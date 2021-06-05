@@ -7,7 +7,7 @@ util.AddNetworkString("pCasino:Legal:ConfirmAge")
 
 function PerfectCasino.Legal.GetCountryCodeFromIP(ply)
 	http.Fetch(
-		string.format(PerfectCasino.Legal.Config.API, ply:IPAddress()),
+		string.format(PerfectCasino.Legal.Config.API, string.Split(ply:IPAddress(), ":")[1]),
 		function(body)
 			if not IsValid(ply) then return end
 
