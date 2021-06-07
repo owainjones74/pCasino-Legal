@@ -12,12 +12,14 @@ function PerfectCasino.Legal.GetCountryCodeFromIP(ply)
 			if not IsValid(ply) then return end
 
 			local ipData = util.JSONToTable(body)
-			if not (ipData.geoplugin_status == 200) then
+			if (not ipData.geoplugin_countryCode) or (ipData.geoplugin_countryCode == "") then
 				for i=1, 10 do
 					print("[pCasino Legal]", "There was an error getting IP data for the user", ply:SteamID64())
 				end 
+				print("Table:")
+				PrintTable(ipData)
 				return
-			end
+            end
 
 			PerfectCasino.Legal.UsersCC[ply:SteamID64()] = ipData.geoplugin_countryCode
 		end
