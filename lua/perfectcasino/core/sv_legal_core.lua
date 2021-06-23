@@ -33,8 +33,12 @@ net.Receive("pCasino:Legal:ConfirmAge", function(_, ply)
 	PerfectCasino.Legal.UsersAge[ply:SteamID64()] = true
 end)
 
+local retryLoad = {}
 function PerfectCasino.Legal.BaseCheck(ply)
 	if not PerfectCasino.Legal.UsersCC[ply:SteamID64()] then
+		if not retryLoad[ply:SteamID64()] then
+			PerfectCasino.Legal.GetCountryCodeFromIP(ply)
+		end
 		return false, PerfectCasino.Legal.Translation.UnknownError
 	end
 

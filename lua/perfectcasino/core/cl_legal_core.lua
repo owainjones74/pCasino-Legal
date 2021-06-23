@@ -1,3 +1,1 @@
-net.Receive("pCasino:Legal:Age", function()
-	PerfectCasino.Legal.AgeMenu()
-end)
+net.Receive("pCasino:Legal:Age", PerfectCasino.Legal.AgeMenu)
